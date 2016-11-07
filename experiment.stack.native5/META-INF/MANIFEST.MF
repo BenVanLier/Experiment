@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Native
+Bundle-SymbolicName: experiment.stack.native
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: at.ac.tuwien.big.moea;bundle-version="2.0.0"
