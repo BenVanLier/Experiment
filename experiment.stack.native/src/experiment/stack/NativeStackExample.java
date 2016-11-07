@@ -19,6 +19,7 @@ public class NativeStackExample {
 
    public static Executor createExecutor(final Integer[] initialLoads, final int populationSize,
          final int maxEvaluations, final String algorithm) {
+	  printSearchInfo(populationSize, maxEvaluations);
       final Instrumenter instrumenter = new SearchInstrumenter()
             .withProblemClass(NativeStackProblem.class, Arrays.asList(initialLoads))
             // .attachAll()
@@ -35,6 +36,8 @@ public class NativeStackExample {
 
    public static Analyzer doAnalysis(final String name, final Integer[] initialLoads, final Executor executor,
          final int runs) {
+	  System.out.println("AlgorithmRuns: " + runs);
+	  System.out.println("-------------------------------------------------------");
       final Analyzer analyzer = new Analyzer().withSameProblemAs(executor).withReferenceSet(null);
 
       final List<NondominatedPopulation> result = executor.runSeeds(runs);
@@ -53,6 +56,14 @@ public class NativeStackExample {
       doAnalysis("NSGAII", initialLoads, executor, 5);
    }
 
+   public static void printSearchInfo(int populationSize, int maxEvaluations){
+	   System.out.println("-------------------------------------------------------");
+	   System.out.println("Search");
+	   System.out.println("-------------------------------------------------------");
+	   System.out.println("PopulationSize: " + populationSize);
+	   System.out.println("MaxEvaluations: " + maxEvaluations);
+   }
+   
    public static void printPopulation(final NondominatedPopulation population, final Integer[] initialLoads) {
       int solutionNr = 1;
       for(final Solution s : population) {

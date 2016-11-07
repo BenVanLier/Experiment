@@ -50,25 +50,18 @@ search = {
    }
    
    algorithms = {
-//      Random   : moea.createRandomSearch()
       NSGA_II   : moea.createNSGAII(
                   new TournamentSelection(2),
                   new OnePointCrossover(1.0), 
                   new TransformationPlaceholderMutation(0.15),
                   new TransformationParameterMutation(0.1, orchestration.moduleManager))
-//      NSGA_III   : moea.createNSGAIII(
-//                  4,
-//                  new TournamentSelection(2),
-//                  new OnePointCrossover(1.0), 
-//                  new TransformationPlaceholderMutation(0.15),
-//                  new TransformationParameterMutation(0.1, orchestration.moduleManager))
    }   
 }
 
 experiment = {
    populationSize    = 100
    maxEvaluations    = 2000
-   nrRuns             = 20
+   nrRuns             = 5
    progressListeners = [ new SeedRuntimePrintListener ]
 }
    
@@ -76,65 +69,37 @@ analysis = {
    indicators        = [ hypervolume additiveEpsilonIndicator maximumParetoFrontError  ]
    show               = [ individualValues aggregateValues statisticalSignificance ]
    significance     = 0.01
-   outputFile       = "example/output/analysis.txt"
-   boxplotDirectory = "example/output/boxplot/"
-   printOutput
+   outputFile       = "output/analysis/analysis.txt"
+   boxplotDirectory = "output/analysis/boxplot/"
 }
    
 results = {   
    objectives = {
+   	  outputFile = "output/objectives/overall_objectives.pf"
       printOutput
    }
    
-   objectives = {
-      outputFile = "example/output/overall_objectives.pf"
-      printOutput
-   }
-   
-   objectives = {
-      algorithms = [NSGA_II ]
-      outputFile = "example/output/moea_objectives.pf"
-      printOutput
-   }
-   
-   objectives = {
-      algorithms = [ NSGA_II ]
-      neighborhoodSize = 3 // kneepoints
-      outputFile = "example/output/moea_kneepoints_objectives.pf"
-      printOutput
-   }
+//   objectives = {
+//      algorithms = [ NSGA_II ]
+//      neighborhoodSize = 3 // kneepoints
+//      outputFile = "output/objectives/kneepoints_objectives.pf"
+//      printOutput
+//   }
+//   
    
    solutions = {
-      outputFile = "example/output/overall_solutions.txt"
-      outputDirectory ="example/output/solutions/all/"
+      outputFile = "output/solutions/overall_solutions.txt"
+      outputDirectory ="output/solutions/"
    }
    
-   solutions = {
-      algorithms = [NSGA_II ]
-      outputFile = "example/output/moea_solutions.txt"
-      outputDirectory ="example/output/solutions/moea/"
-   }
-   
-   solutions = {
-      algorithms = [NSGA_II ]
-      neighborhoodSize = maxNeighborhoodSize  // kneepoint
-      outputFile = "example/output/solutions/moea_kneepoint_solutions.txt"
-      outputDirectory ="example/output/solutions/moea/kneepoints/"
-      printOutput
-   }
+//   solutions = {
+//      algorithms = [NSGA_II ]
+//      neighborhoodSize = maxNeighborhoodSize  // kneepoint
+//      outputFile = "output/solutions/kneepoint_solutions.txt"
+//      outputDirectory ="output/solutions/kneepoints/"
+//   }
  
    models = {
-      outputDirectory = "example/output/models/testing ladida"
-      printOutput
+      outputDirectory = "output/models"
    }
-   
-   models = {
-      algorithms = [ NSGA_II ]
-      outputDirectory = "example/output/models/moea/"
-   }
-   
-//   models = {
-//      algorithms = [ Random ]
-//      outputDirectory = "example/output/models/random/"
-//   }
 }   
