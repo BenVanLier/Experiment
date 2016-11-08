@@ -25,7 +25,7 @@ public class NativeStackExample {
             // .attachAll()
             .withFrequency(populationSize).withReferenceSet(new File("output/evolutionary_reference_set.csv"));
 
-      final Executor executor = new Executor().withSameProblemAs(instrumenter).withAlgorithm("NSGAII")
+      final Executor executor = new Executor().withSameProblemAs(instrumenter).withAlgorithm(algorithm)
             .withProperty("populationSize", populationSize).withProperty("maxEvaluations", maxEvaluations)
             .distributeOnAllCores()
             // .withProgressListener(new RuntimePrintListener())
@@ -38,10 +38,11 @@ public class NativeStackExample {
          final int runs) {
 	  System.out.println("AlgorithmRuns: " + runs);
 	  System.out.println("-------------------------------------------------------");
+	  System.out.println("Run '" + name + "' "+ runs + " times...");
       final Analyzer analyzer = new Analyzer().withSameProblemAs(executor).withReferenceSet(null);
 
       final List<NondominatedPopulation> result = executor.runSeeds(runs);
-      analyzer.addAll("NSGAII", result);
+      analyzer.addAll(name, result);
       final NondominatedPopulation referenceSet = analyzer.getReferenceSet();
       printPopulation(referenceSet, initialLoads);
       analyzer.printAnalysis();

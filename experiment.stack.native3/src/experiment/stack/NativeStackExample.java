@@ -25,8 +25,8 @@ public class NativeStackExample {
             // .attachAll()
             .withFrequency(populationSize).withReferenceSet(new File("output/evolutionary_reference_set.csv"));
 
-      final Executor executor = new Executor().withSameProblemAs(instrumenter).withAlgorithm("NSGAII")
-            .withProperty("populationSize", populationSize).withProperty("maxEvaluations", maxEvaluations)
+      final Executor executor = new Executor().withSameProblemAs(instrumenter).withAlgorithm(algorithm)
+            .withProperty("populationSize", populationSize).withProperty("maxEvaluations", maxEvaluations).withProperty("epsilon", 0.01)
             .distributeOnAllCores()
             // .withProgressListener(new RuntimePrintListener())
             .withProgressListener(new SeedRuntimePrintListener()).withInstrumenter(instrumenter);
@@ -38,10 +38,11 @@ public class NativeStackExample {
          final int runs) {
 	  System.out.println("AlgorithmRuns: " + runs);
 	  System.out.println("-------------------------------------------------------");
+	  System.out.println("Run '" + name + "' "+ runs + " times...");
       final Analyzer analyzer = new Analyzer().withSameProblemAs(executor).withReferenceSet(null);
 
       final List<NondominatedPopulation> result = executor.runSeeds(runs);
-      analyzer.addAll("NSGAII", result);
+      analyzer.addAll(name, result);
       final NondominatedPopulation referenceSet = analyzer.getReferenceSet();
       printPopulation(referenceSet, initialLoads);
       analyzer.printAnalysis();
@@ -52,8 +53,8 @@ public class NativeStackExample {
 
       final Integer[] initialLoads = new Integer[] { 1, 7, 3, 9, 5 };
 
-      final Executor executor = createExecutor(initialLoads, 100, 1000, "NSGAII");
-      doAnalysis("NSGAII", initialLoads, executor, 5);
+      final Executor executor = createExecutor(initialLoads, 100, 1000, "EMOEA");
+      doAnalysis("EMOEA", initialLoads, executor, 5);
    }
 
    public static void printSearchInfo(int populationSize, int maxEvaluations){

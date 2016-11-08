@@ -50,7 +50,8 @@ search = {
    }
    
    algorithms = {
-      NSGA_II   : moea.createNSGAII(
+      EMOEA   : moea.createEpsilonMOEA(
+      			  0.01,
                   new TournamentSelection(2),
                   new OnePointCrossover(1.0), 
                   new TransformationPlaceholderMutation(0.15),
