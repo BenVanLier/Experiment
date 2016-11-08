@@ -50,7 +50,7 @@ public class NativeStackExample {
 
    public static void main(final String[] args) {
 
-      final Integer[] initialLoads = new Integer[] { 1, 7, 3, 9, 5 };
+      final Integer[] initialLoads = new Integer[] { 1, 7, 3, 9, 5, 9};
 
       final Executor executor = createExecutor(initialLoads, 100, 1000, "NSGAII");
       doAnalysis("NSGAII", initialLoads, executor, 5);
