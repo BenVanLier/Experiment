@@ -53,7 +53,7 @@ public class NativeStackExample {
       final Integer[] initialLoads = new Integer[] { 1, 7, 3, 9, 5 };
 
       final Executor executor = createExecutor(initialLoads, 100, 1000, "NSGAII");
-      doAnalysis("NSGAII", initialLoads, executor, 5);
+      doAnalysis("NSGAII", initialLoads, executor, 300);
    }
 
    public static void printSearchInfo(int populationSize, int maxEvaluations){
