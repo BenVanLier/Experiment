@@ -79,25 +79,10 @@ results = {
       printOutput
    }
    
-//   objectives = {
-//      algorithms = [ NSGA_II ]
-//      neighborhoodSize = 3 // kneepoints
-//      outputFile = "output/objectives/kneepoints_objectives.pf"
-//      printOutput
-//   }
-//   
-   
    solutions = {
       outputFile = "output/solutions/overall_solutions.txt"
       outputDirectory ="output/solutions/"
    }
-   
-//   solutions = {
-//      algorithms = [NSGA_II ]
-//      neighborhoodSize = maxNeighborhoodSize  // kneepoint
-//      outputFile = "output/solutions/kneepoint_solutions.txt"
-//      outputDirectory ="output/solutions/kneepoints/"
-//   }
  
    models = {
       outputDirectory = "output/models"
