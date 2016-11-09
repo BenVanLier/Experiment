@@ -44,7 +44,7 @@ search = {
    fitness = {
       objectives = { // could also use OCL as: minimize "ocl-expression"
           StandardDeviation : minimize { MathUtil.getStandardDeviation((root as StackModel).stacks.map[load]) }
-          SolutionLength    : minimize new TransformationLengthDimension
+          SolutionLength    : maximize new TransformationLengthDimension
       }
       solutionRepairer = new TransformationPlaceholderRepairer
    }

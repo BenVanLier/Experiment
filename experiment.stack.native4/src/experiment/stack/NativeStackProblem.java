@@ -29,7 +29,7 @@ public class NativeStackProblem extends AbstractProblem {
             neighborIndex += load.length;
          }
 
-         load[neighborIndex] += moveLoad;
+         load[i] += moveLoad;
       }
       return load;
    }

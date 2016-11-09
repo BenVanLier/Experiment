@@ -121,7 +121,7 @@ public class NativeStackProblem extends AbstractProblem {
             solutionLength++;
          }
       }
-      solution.setObjective(OBJECTIVE_SOLUTION_LENGTH, solutionLength);
+      solution.setObjective(OBJECTIVE_SOLUTION_LENGTH, -solutionLength);
 
       for(final Integer stack : result) {
          if(stack < 0) {
